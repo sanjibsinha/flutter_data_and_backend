@@ -2,7 +2,7 @@
 
 There are lot of tips and tricks that might be useful for beginners. 
 
-## This repository will particularly address the issues concerning all #Flutter data and backend operations
+## This repository will particularly address the issues concerning all Flutter data and backend operations
 We've started with a simple sqflite package and will move from known to unknown facts
 
 ## Getting Started
