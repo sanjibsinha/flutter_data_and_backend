@@ -7,6 +7,7 @@ void main() {
   runApp(const MyApp());
 }
 
+/// adding first branch
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
