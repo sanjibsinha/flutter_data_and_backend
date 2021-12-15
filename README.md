@@ -2,6 +2,9 @@
 
 There are lot of tips and tricks that might be useful for beginners. 
 
+## This repository will particularly address the issues concerning all #Flutter data and backend operations
+We've started with a simple sqflite package and will move from known to unknown facts
+
 ## Getting Started
 
 The website - [https://sanjibsinha.com](https://sanjibsinha.com) is a project, which is a starting point for a WordPress application. Any beginner may use the code repository to learn how one can develop a WordPress web application from scratch.
