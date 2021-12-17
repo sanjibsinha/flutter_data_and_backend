@@ -22,3 +22,10 @@ class User {
     };
   }
 }
+
+List<User> users = [
+  User(name: "Mana", location: "Nabagram"),
+  User(name: "Babu", location: "Nabagram"),
+  User(name: "Pata", location: "Nabagram"),
+  User(name: "Gopal", location: "Nabagram"),
+];
