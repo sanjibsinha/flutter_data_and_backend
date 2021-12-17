@@ -59,17 +59,17 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: snapshot.data?.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
-                  child: ListTile(
-                    key: ValueKey<int>(snapshot.data![index].id!),
-                    contentPadding: const EdgeInsets.all(8.0),
-                    title: Text(
-                      snapshot.data![index].name,
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                    subtitle: Text(
-                      snapshot.data![index].location.toString(),
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        key: ValueKey<int>(snapshot.data![index].id!),
+                        contentPadding: const EdgeInsets.all(8.0),
+                        title: Text(
+                          snapshot.data![index].name,
+                          style: Theme.of(context).textTheme.headline3,
+                        ),
+                      ),
+                    ],
                   ),
                 );
               },
