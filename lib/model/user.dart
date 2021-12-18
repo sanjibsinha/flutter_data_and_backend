@@ -18,10 +18,3 @@ class User {
     };
   }
 }
-
-List<User> users = [
-  User(name: "Mana"),
-  User(name: "Babu"),
-  User(name: "Pata"),
-  User(name: "Gopal"),
-];

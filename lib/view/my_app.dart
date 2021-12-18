@@ -1,84 +1,33 @@
 import 'package:flutter/material.dart';
-import '/model/database_handler.dart';
-import '/model/user.dart';
+import 'expense_first_page.dart';
 
-/// adding first branch
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class ExpenseApp extends StatelessWidget {
+  const ExpenseApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter smimple database',
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Flutter smimple database'),
+      home: const ExpensePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  late DatabaseHandler handler;
-
-  @override
-  void initState() {
-    Future<int> addUsers() async {
-      return await handler.insertUser(users);
-    }
-
-    super.initState();
-    handler = DatabaseHandler();
-    handler.initializeDB().whenComplete(() async {
-      await addUsers();
-      setState(() {});
-    });
-  }
+class ExpensePage extends StatelessWidget {
+  const ExpensePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text('Expense List'),
       ),
-      body: FutureBuilder(
-        future: handler.retrieveUsers(),
-        builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data?.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  child: Column(
-                    children: [
-                      ListTile(
-                        key: ValueKey<int>(snapshot.data![index].id!),
-                        contentPadding: const EdgeInsets.all(8.0),
-                        title: Text(
-                          snapshot.data![index].name,
-                          style: Theme.of(context).textTheme.headline3,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+      body: const UserFirstPage(),
     );
   }
 }
