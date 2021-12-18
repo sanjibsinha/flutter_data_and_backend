@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_data_and_backend/model/database_handler.dart';
+import 'package:flutter_data_and_backend/view/future_dark.dart';
 
 import 'model/user.dart';
 
@@ -119,73 +118,6 @@ class _MyAppHomeState extends State<MyAppHome> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class FutureDark extends StatefulWidget {
-  const FutureDark({
-    Key? key,
-    required this.name,
-  }) : super(key: key);
-
-  final String name;
-
-  @override
-  State<FutureDark> createState() => _FutureDarkState();
-}
-
-class _FutureDarkState extends State<FutureDark> {
-  late DatabaseHandler handler;
-  @override
-  Widget build(BuildContext context) {
-    late List<User> usersList = [
-      User(name: widget.name),
-    ];
-
-    @override
-    // ignore: unused_element
-    void initState() {
-      Future<int> addUsers() async {
-        return await handler.insertUser(usersList);
-      }
-
-      super.initState();
-
-      handler.initializeDB().whenComplete(() async {
-        await addUsers();
-        setState(() {});
-      });
-    }
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('data'),
-      ),
-      body: FutureBuilder(
-        future: handler.retrieveUsers(),
-        builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data?.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  child: ListTile(
-                    key: ValueKey<int>(snapshot.data![index].id!),
-                    contentPadding: const EdgeInsets.all(8.0),
-                    title: Text(
-                      snapshot.data![index].name,
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                  ),
-                );
-              },
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
       ),
     );
   }
