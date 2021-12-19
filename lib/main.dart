@@ -46,7 +46,27 @@ class _MyAppHomeState extends State<MyAppHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('data'),
+        title: const Text('Inserting Data'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.add_alert),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('A SnackBar'),
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.search_outlined),
+            tooltip: 'Search',
+            onPressed: () {
+              // our code
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -82,43 +102,63 @@ class _MyAppHomeState extends State<MyAppHome> {
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                   ],
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(5),
-              child: Column(
-                children: usersList.map((e) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Card(
-                        elevation: 10,
-                        child: Row(
-                          children: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => FutureDark(
-                                      name: e.name,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: const Text('data'),
-                            ),
-                          ],
+            NavigationWidget(usersList: usersList),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class NavigationWidget extends StatelessWidget {
+  const NavigationWidget({
+    Key? key,
+    required this.usersList,
+  }) : super(key: key);
+
+  final List<User> usersList;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(5),
+        height: 150,
+        width: 350,
+        child: Column(
+          children: usersList.map((e) {
+            return Column(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FutureDark(
+                          name: e.name,
                         ),
                       ),
-                    ],
-                  );
-                }).toList(),
-              ),
-            ),
-          ],
+                    );
+                  },
+                  child: const Text(
+                    'Navigate',
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }).toList(),
         ),
       ),
     );

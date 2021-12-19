@@ -38,7 +38,7 @@ class _FutureDarkState extends State<FutureDark> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('data'),
+        title: const Text('Showing Data'),
       ),
       body: FutureBuilder(
         future: handler!.retrieveUsers(),
