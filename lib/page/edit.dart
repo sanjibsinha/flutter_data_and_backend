@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import '/db/notes_database.dart';
-import '/model/note.dart';
-import '/widget/note_form_widget.dart';
+import '../db/blogs.dart';
+import '../model/blog.dart';
+import '../widget/blog_form.dart';
 
-class AddEditNotePage extends StatefulWidget {
-  final Note? note;
+class EditPage extends StatefulWidget {
+  final Blog? blog;
 
-  const AddEditNotePage({
+  const EditPage({
     Key? key,
-    this.note,
+    this.blog,
   }) : super(key: key);
   @override
-  _AddEditNotePageState createState() => _AddEditNotePageState();
+  _EditPageState createState() => _EditPageState();
 }
 
-class _AddEditNotePageState extends State<AddEditNotePage> {
+class _EditPageState extends State<EditPage> {
   final _formKey = GlobalKey<FormState>();
   late bool isImportant;
   late int number;
@@ -25,10 +25,8 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   void initState() {
     super.initState();
 
-    isImportant = widget.note?.isImportant ?? false;
-    number = widget.note?.number ?? 0;
-    title = widget.note?.title ?? '';
-    description = widget.note?.description ?? '';
+    title = widget.blog?.title ?? '';
+    description = widget.blog?.description ?? '';
   }
 
   @override
@@ -38,14 +36,9 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
         ),
         body: Form(
           key: _formKey,
-          child: NoteFormWidget(
-            isImportant: isImportant,
-            number: number,
+          child: BlogForm(
             title: title,
             description: description,
-            onChangedImportant: (isImportant) =>
-                setState(() => this.isImportant = isImportant),
-            onChangedNumber: (number) => setState(() => this.number = number),
             onChangedTitle: (title) => setState(() => this.title = title),
             onChangedDescription: (description) =>
                 setState(() => this.description = description),
@@ -73,7 +66,7 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
     final isValid = _formKey.currentState!.validate();
 
     if (isValid) {
-      final isUpdating = widget.note != null;
+      final isUpdating = widget.blog != null;
 
       if (isUpdating) {
         await updateNote();
@@ -86,25 +79,21 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   }
 
   Future updateNote() async {
-    final note = widget.note!.copy(
-      isImportant: isImportant,
-      number: number,
+    final blog = widget.blog!.copy(
       title: title,
       description: description,
     );
 
-    await NotesDatabase.instance.update(note);
+    await BlogDatabase.instance.update(blog);
   }
 
   Future addNote() async {
-    final note = Note(
+    final blog = Blog(
       title: title,
-      isImportant: true,
-      number: number,
       description: description,
       createdTime: DateTime.now(),
     );
 
-    await NotesDatabase.instance.create(note);
+    await BlogDatabase.instance.create(blog);
   }
 }

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '/db/notes_database.dart';
-import '/model/note.dart';
-import '/page/edit_note_page.dart';
+import '../db/blogs.dart';
+import '../model/blog.dart';
+import 'edit.dart';
 
-class NoteDetailPage extends StatefulWidget {
+class DetailPage extends StatefulWidget {
   final int noteId;
 
-  const NoteDetailPage({
+  const DetailPage({
     Key? key,
     required this.noteId,
   }) : super(key: key);
 
   @override
-  _NoteDetailPageState createState() => _NoteDetailPageState();
+  _DetailPageState createState() => _DetailPageState();
 }
 
-class _NoteDetailPageState extends State<NoteDetailPage> {
-  late Note note;
+class _DetailPageState extends State<DetailPage> {
+  late Blog blog;
   bool isLoading = false;
 
   @override
@@ -30,7 +30,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
   Future refreshNote() async {
     setState(() => isLoading = true);
 
-    note = await NotesDatabase.instance.readNote(widget.noteId);
+    blog = await BlogDatabase.instance.readNote(widget.noteId);
 
     setState(() => isLoading = false);
   }
@@ -48,7 +48,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   children: [
                     Text(
-                      note.title,
+                      blog.title,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 22,
@@ -57,12 +57,12 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      DateFormat.yMMMd().format(note.createdTime),
+                      DateFormat.yMMMd().format(blog.createdTime),
                       style: const TextStyle(color: Colors.white38),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      note.description,
+                      blog.description,
                       style:
                           const TextStyle(color: Colors.white70, fontSize: 18),
                     )
@@ -77,7 +77,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
         if (isLoading) return;
 
         await Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => AddEditNotePage(note: note),
+          builder: (context) => EditPage(blog: blog),
         ));
 
         refreshNote();
@@ -86,7 +86,7 @@ class _NoteDetailPageState extends State<NoteDetailPage> {
   Widget deleteButton() => IconButton(
         icon: const Icon(Icons.delete),
         onPressed: () async {
-          await NotesDatabase.instance.delete(widget.noteId);
+          await BlogDatabase.instance.delete(widget.noteId);
 
           Navigator.of(context).pop();
         },

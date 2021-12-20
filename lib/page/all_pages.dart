@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import '/db/notes_database.dart';
-import '/model/note.dart';
-import '/page/edit_note_page.dart';
-import '/page/note_detail_page.dart';
-import '/widget/note_card_widget.dart';
+import '../db/blogs.dart';
+import '../model/blog.dart';
+import 'edit.dart';
+import 'detail.dart';
+import '../widget/blog_card.dart';
 
-class NotesPage extends StatefulWidget {
-  const NotesPage({Key? key}) : super(key: key);
+class AllPages extends StatefulWidget {
+  const AllPages({Key? key}) : super(key: key);
 
   @override
-  _NotesPageState createState() => _NotesPageState();
+  _AllPagesState createState() => _AllPagesState();
 }
 
-class _NotesPageState extends State<NotesPage> {
-  late List<Note> notes;
+class _AllPagesState extends State<AllPages> {
+  late List<Blog> blogs;
   bool isLoading = false;
 
   @override
@@ -26,7 +26,7 @@ class _NotesPageState extends State<NotesPage> {
 
   @override
   void dispose() {
-    NotesDatabase.instance.close();
+    BlogDatabase.instance.close();
 
     super.dispose();
   }
@@ -34,7 +34,7 @@ class _NotesPageState extends State<NotesPage> {
   Future refreshNotes() async {
     setState(() => isLoading = true);
 
-    notes = await NotesDatabase.instance.readAllNotes() as List<Note>;
+    blogs = await BlogDatabase.instance.readAllNotes() as List<Blog>;
 
     setState(() => isLoading = false);
   }
@@ -43,7 +43,7 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Notes',
+            'Blogs',
             style: TextStyle(fontSize: 24),
           ),
           actions: const [Icon(Icons.search), SizedBox(width: 12)],
@@ -51,9 +51,9 @@ class _NotesPageState extends State<NotesPage> {
         body: Center(
           child: isLoading
               ? const CircularProgressIndicator()
-              : notes.isEmpty
+              : blogs.isEmpty
                   ? const Text(
-                      'No Notes',
+                      'No Blogs',
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     )
                   : buildNotes(),
@@ -63,7 +63,7 @@ class _NotesPageState extends State<NotesPage> {
           child: const Icon(Icons.add),
           onPressed: () async {
             await Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const AddEditNotePage()),
+              MaterialPageRoute(builder: (context) => const EditPage()),
             );
 
             refreshNotes();
@@ -73,23 +73,23 @@ class _NotesPageState extends State<NotesPage> {
 
   Widget buildNotes() => StaggeredGridView.countBuilder(
         padding: const EdgeInsets.all(8),
-        itemCount: notes.length,
+        itemCount: blogs.length,
         staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
         crossAxisCount: 4,
         mainAxisSpacing: 4,
         crossAxisSpacing: 4,
         itemBuilder: (context, index) {
-          final note = notes[index];
+          final note = blogs[index];
 
           return GestureDetector(
             onTap: () async {
               await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => NoteDetailPage(noteId: note.id!),
+                builder: (context) => DetailPage(noteId: note.id!),
               ));
 
               refreshNotes();
             },
-            child: NoteCardWidget(note: note, index: index),
+            child: BlogCard(blog: note, index: index),
           );
         },
       );
