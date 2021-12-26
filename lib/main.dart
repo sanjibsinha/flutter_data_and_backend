@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import '/page/home_page.dart';
-//import '/page/user_page.dart';
-//import '/utils/user_preferences.dart';
-//import '/utils/user_simple_preferences.dart';
+import 'view/all_pages.dart';
 
-main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  static const String title = 'Login & Signup';
+  static const String title = 'Blogs';
 
   const MyApp({Key? key}) : super(key: key);
 
@@ -18,24 +21,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: title,
+        themeMode: ThemeMode.light,
         theme: ThemeData(
-          scaffoldBackgroundColor: Colors.blue.shade300,
-          unselectedWidgetColor: Colors.blue.shade200,
-          switchTheme: SwitchThemeData(
-            thumbColor: MaterialStateProperty.all(Colors.white),
+          primaryColor: Colors.pink.shade200,
+          scaffoldBackgroundColor: Colors.pink.shade600,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
           ),
-          colorScheme: const ColorScheme.dark()
-              .copyWith(secondary: Colors.indigoAccent.withOpacity(0.8)),
         ),
-        home: const HomePage(),
+        home: const AllPages(),
       );
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
 }
