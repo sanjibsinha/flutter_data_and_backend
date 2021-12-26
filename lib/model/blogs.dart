@@ -12,7 +12,7 @@ class BlogDatabaseHandler {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('blogs.db');
+    _database = await _initDB('newblogs.db');
     return _database!;
   }
 
@@ -30,7 +30,7 @@ class BlogDatabaseHandler {
     const integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
-CREATE TABLE $tableBlogs ( 
+CREATE TABLE $tableOfBlogs ( 
   ${BlogFields.id} $idType, 
   ${BlogFields.title} $textType,
   ${BlogFields.description} $textType,
@@ -42,7 +42,7 @@ CREATE TABLE $tableBlogs (
   Future<Blog> create(Blog blog) async {
     final db = await instance.database;
 
-    final id = await db.insert(tableBlogs, blog.toJson());
+    final id = await db.insert(tableOfBlogs, blog.toJson());
     return blog.copy(id: id);
   }
 
@@ -50,7 +50,7 @@ CREATE TABLE $tableBlogs (
     final db = await instance.database;
 
     final maps = await db.query(
-      tableBlogs,
+      tableOfBlogs,
       columns: BlogFields.values,
       where: '${BlogFields.id} = ?',
       whereArgs: [id],
@@ -68,7 +68,7 @@ CREATE TABLE $tableBlogs (
 
     const orderBy = '${BlogFields.time} ASC';
 
-    final result = await db.query(tableBlogs, orderBy: orderBy);
+    final result = await db.query(tableOfBlogs, orderBy: orderBy);
 
     return result.map((json) => Blog.fromJson(json)).toList();
   }
@@ -77,7 +77,7 @@ CREATE TABLE $tableBlogs (
     final db = await instance.database;
 
     return db.update(
-      tableBlogs,
+      tableOfBlogs,
       blog.toJson(),
       where: '${BlogFields.id} = ?',
       whereArgs: [blog.id],
@@ -88,7 +88,7 @@ CREATE TABLE $tableBlogs (
     final db = await instance.database;
 
     return await db.delete(
-      tableBlogs,
+      tableOfBlogs,
       where: '${BlogFields.id} = ?',
       whereArgs: [id],
     );
