@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'page/all_pages.dart';
+import 'view/all_pages.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +13,7 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-  static const String title = 'Notes SQLite';
+  static const String title = 'Blogs SQLite';
 
   const MyApp({Key? key}) : super(key: key);
 

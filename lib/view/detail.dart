@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../db/blogs.dart';
+import '../model/blogs.dart';
 import '../model/blog.dart';
 import 'edit.dart';
 

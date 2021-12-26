@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../db/blogs.dart';
+import '../model/blogs.dart';
 import '../model/blog.dart';
-import '../widget/blog_form.dart';
+import '../controller/blog_form.dart';
 
 class EditPage extends StatefulWidget {
   final Blog? blog;

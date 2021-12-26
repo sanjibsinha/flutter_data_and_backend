@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import '../db/blogs.dart';
+import '../model/blogs.dart';
 import '../model/blog.dart';
 import 'edit.dart';
 import 'detail.dart';
-import '../widget/blog_card.dart';
+import '../controller/blog_card.dart';
 
 class AllPages extends StatefulWidget {
   const AllPages({Key? key}) : super(key: key);
