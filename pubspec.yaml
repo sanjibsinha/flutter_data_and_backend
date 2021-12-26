@@ -30,10 +30,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  image_picker: ^0.8.4+4
   intl: ^0.17.0
   path_provider: ^2.0.8
   provider: ^6.0.1
-  sqflite: 
+  shared_preferences: ^2.0.11
+  sqflite: null
+  uuid: ^3.0.5
 
 dev_dependencies:
   flutter_lints: ^1.0.0
