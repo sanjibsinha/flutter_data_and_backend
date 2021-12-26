@@ -34,7 +34,7 @@ class _AllPagesState extends State<AllPages> {
   Future refreshNotes() async {
     setState(() => isLoading = true);
 
-    blogs = await BlogDatabase.instance.readAllNotes() as List<Blog>;
+    blogs = await BlogDatabase.instance.readAllNotes();
 
     setState(() => isLoading = false);
   }
@@ -59,7 +59,7 @@ class _AllPagesState extends State<AllPages> {
                   : buildNotes(),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.pink.shade900,
           child: const Icon(Icons.add),
           onPressed: () async {
             await Navigator.of(context).push(

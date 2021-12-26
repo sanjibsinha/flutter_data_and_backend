@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: title,
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.light,
         theme: ThemeData(
-          primaryColor: Colors.lime,
-          scaffoldBackgroundColor: Colors.lightBlue.shade400,
+          primaryColor: Colors.pink.shade200,
+          scaffoldBackgroundColor: Colors.pink.shade600,
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             elevation: 0,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_data_and_backend/model/database_handler.dart';
-import 'package:flutter_data_and_backend/model/user.dart';
+import '/model/database_handler.dart';
+import '/model/user.dart';
 
 class FutureDark extends StatefulWidget {
   const FutureDark({
