@@ -5,11 +5,11 @@ import '../model/blog.dart';
 import 'edit.dart';
 
 class DetailPage extends StatefulWidget {
-  final int noteId;
+  final int blogId;
 
   const DetailPage({
     Key? key,
-    required this.noteId,
+    required this.blogId,
   }) : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class _DetailPageState extends State<DetailPage> {
   Future refreshBlog() async {
     setState(() => isLoading = true);
 
-    blog = await BlogDatabaseHandler.instance.readBlog(widget.noteId);
+    blog = await BlogDatabaseHandler.instance.readBlog(widget.blogId);
 
     setState(() => isLoading = false);
   }
@@ -50,6 +50,25 @@ class _DetailPageState extends State<DetailPage> {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   children: [
+                    TextButton(
+                      onPressed: () async {
+                        if (isLoading) return;
+
+                        await Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => EditPage(blog: blog),
+                        ));
+
+                        refreshBlog();
+                      },
+                      child: const Text(
+                        'Edit',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     Text(
                       blog.title,
                       style: const TextStyle(
@@ -58,12 +77,12 @@ class _DetailPageState extends State<DetailPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 10),
                     Text(
                       DateFormat.yMMMd().format(blog.createdTime),
                       style: const TextStyle(color: Colors.white38),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 10),
                     Text(
                       blog.description,
                       style:
@@ -89,7 +108,7 @@ class _DetailPageState extends State<DetailPage> {
   Widget deleteButton() => IconButton(
         icon: const Icon(Icons.delete),
         onPressed: () async {
-          await BlogDatabaseHandler.instance.delete(widget.noteId);
+          await BlogDatabaseHandler.instance.delete(widget.blogId);
 
           Navigator.of(context).pop();
         },

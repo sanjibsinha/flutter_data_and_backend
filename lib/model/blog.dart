@@ -1,4 +1,4 @@
-const String tableBlogs = 'Blogs';
+const String tableOfBlogs = 'Blogs';
 
 class BlogFields {
   static final List<String> values = [

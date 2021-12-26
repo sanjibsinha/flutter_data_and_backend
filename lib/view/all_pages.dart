@@ -46,28 +46,35 @@ class _AllPagesState extends State<AllPages> {
             'Blogs',
             style: TextStyle(fontSize: 24),
           ),
-          actions: const [Icon(Icons.search), SizedBox(width: 12)],
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.white,
+                  primary: Colors.pink.shade900,
+                ),
+                onPressed: () async {
+                  await Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const EditPage()),
+                  );
+
+                  refreshingAllBogs();
+                },
+                child: const Text('Add Blog'),
+              ),
+            )
+          ],
         ),
         body: Center(
           child: isLoading
               ? const CircularProgressIndicator()
               : blogs.isEmpty
                   ? const Text(
-                      'No Blogs',
-                      style: TextStyle(color: Colors.white, fontSize: 24),
+                      'No Blogs in the beginning...',
+                      style: TextStyle(color: Colors.white, fontSize: 60),
                     )
                   : buildingAllBlogs(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.pink.shade900,
-          child: const Icon(Icons.add),
-          onPressed: () async {
-            await Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const EditPage()),
-            );
-
-            refreshingAllBogs();
-          },
         ),
       );
 
@@ -79,17 +86,17 @@ class _AllPagesState extends State<AllPages> {
         mainAxisSpacing: 4,
         crossAxisSpacing: 4,
         itemBuilder: (context, index) {
-          final note = blogs[index];
+          final blog = blogs[index];
 
           return GestureDetector(
             onTap: () async {
               await Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => DetailPage(noteId: note.id!),
+                builder: (context) => DetailPage(blogId: blog.id!),
               ));
 
               refreshingAllBogs();
             },
-            child: BlogCard(blog: note, index: index),
+            child: BlogCard(blog: blog, index: index),
           );
         },
       );
