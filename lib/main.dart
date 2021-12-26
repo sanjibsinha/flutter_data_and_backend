@@ -13,7 +13,7 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-  static const String title = 'Notes SQLite';
+  static const String title = 'Blogs SQLite';
 
   const MyApp({Key? key}) : super(key: key);
 
