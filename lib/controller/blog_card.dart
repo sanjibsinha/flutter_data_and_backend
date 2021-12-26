@@ -22,7 +22,6 @@ class BlogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// Pick colors from the accent colors based on index
     final color = shadeOfColors[index % shadeOfColors.length];
     final time = DateFormat.yMMMd().format(blog.createdTime);
     final minHeight = getMinHeight(index);
@@ -55,7 +54,6 @@ class BlogCard extends StatelessWidget {
     );
   }
 
-  /// To return different height for different widgets
   double getMinHeight(int index) {
     switch (index % 4) {
       case 0:

@@ -2,12 +2,12 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../model/blog.dart';
 
-class BlogDatabase {
-  static final BlogDatabase instance = BlogDatabase._init();
+class BlogDatabaseHandler {
+  static final BlogDatabaseHandler instance = BlogDatabaseHandler._init();
 
   static Database? _database;
 
-  BlogDatabase._init();
+  BlogDatabaseHandler._init();
 
   Future<Database> get database async {
     if (_database != null) return _database!;

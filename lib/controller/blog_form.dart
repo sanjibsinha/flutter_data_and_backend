@@ -41,11 +41,11 @@ class BlogForm extends StatelessWidget {
         ),
         decoration: const InputDecoration(
           border: InputBorder.none,
-          hintText: 'Title',
+          hintText: 'Here Title...',
           hintStyle: TextStyle(color: Colors.white70),
         ),
         validator: (title) =>
-            title != null && title.isEmpty ? 'The title cannot be empty' : null,
+            title != null && title.isEmpty ? 'Title cannot be empty' : null,
         onChanged: onChangedTitle,
       );
 
@@ -55,11 +55,11 @@ class BlogForm extends StatelessWidget {
         style: const TextStyle(color: Colors.white60, fontSize: 18),
         decoration: const InputDecoration(
           border: InputBorder.none,
-          hintText: 'Type something...',
+          hintText: 'Here description...',
           hintStyle: TextStyle(color: Colors.white60),
         ),
         validator: (title) => title != null && title.isEmpty
-            ? 'The description cannot be empty'
+            ? 'Description cannot be empty'
             : null,
         onChanged: onChangedDescription,
       );

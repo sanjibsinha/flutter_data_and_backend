@@ -26,7 +26,7 @@ class _AllPagesState extends State<AllPages> {
 
   @override
   void dispose() {
-    BlogDatabase.instance.close();
+    BlogDatabaseHandler.instance.close();
 
     super.dispose();
   }
@@ -34,7 +34,7 @@ class _AllPagesState extends State<AllPages> {
   Future refreshingAllBogs() async {
     setState(() => isLoading = true);
 
-    blogs = await BlogDatabase.instance.readAllBlogs();
+    blogs = await BlogDatabaseHandler.instance.readAllBlogs();
 
     setState(() => isLoading = false);
   }

@@ -84,7 +84,7 @@ class _EditPageState extends State<EditPage> {
       description: description,
     );
 
-    await BlogDatabase.instance.update(blog);
+    await BlogDatabaseHandler.instance.update(blog);
   }
 
   Future addBlog() async {
@@ -94,6 +94,6 @@ class _EditPageState extends State<EditPage> {
       createdTime: DateTime.now(),
     );
 
-    await BlogDatabase.instance.create(blog);
+    await BlogDatabaseHandler.instance.create(blog);
   }
 }

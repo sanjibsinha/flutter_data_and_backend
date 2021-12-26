@@ -30,7 +30,7 @@ class _DetailPageState extends State<DetailPage> {
   Future refreshBlog() async {
     setState(() => isLoading = true);
 
-    blog = await BlogDatabase.instance.readBlog(widget.noteId);
+    blog = await BlogDatabaseHandler.instance.readBlog(widget.noteId);
 
     setState(() => isLoading = false);
   }
@@ -38,7 +38,10 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          actions: [editButton(), deleteButton()],
+          actions: [
+            editButton(),
+            deleteButton(),
+          ],
         ),
         body: isLoading
             ? const Center(child: CircularProgressIndicator())
@@ -86,7 +89,7 @@ class _DetailPageState extends State<DetailPage> {
   Widget deleteButton() => IconButton(
         icon: const Icon(Icons.delete),
         onPressed: () async {
-          await BlogDatabase.instance.delete(widget.noteId);
+          await BlogDatabaseHandler.instance.delete(widget.noteId);
 
           Navigator.of(context).pop();
         },
