@@ -12,7 +12,7 @@ class BlogDatabaseHandler {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('blogs.db');
+    _database = await _initDB('blogsinsert.db');
     return _database!;
   }
 
