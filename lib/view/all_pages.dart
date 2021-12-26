@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '/model/blogs.dart';
 import '/model/blog.dart';
@@ -22,7 +21,7 @@ class _AllPagesState extends State<AllPages> {
   void initState() {
     super.initState();
 
-    refreshNotesreadAllNotes();
+    refreshingAllBogs();
   }
 
   @override
@@ -32,7 +31,7 @@ class _AllPagesState extends State<AllPages> {
     super.dispose();
   }
 
-  Future refreshNotesreadAllNotes() async {
+  Future refreshingAllBogs() async {
     setState(() => isLoading = true);
 
     blogs = await BlogDatabase.instance.readAllBlogs();
@@ -57,7 +56,7 @@ class _AllPagesState extends State<AllPages> {
                       'No Blogs',
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     )
-                  : buildNotesreadAllNotes(),
+                  : buildingAllBlogs(),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.pink.shade900,
@@ -67,12 +66,12 @@ class _AllPagesState extends State<AllPages> {
               MaterialPageRoute(builder: (context) => const EditPage()),
             );
 
-            refreshNotesreadAllNotes();
+            refreshingAllBogs();
           },
         ),
       );
 
-  Widget buildNotesreadAllNotes() => StaggeredGridView.countBuilder(
+  Widget buildingAllBlogs() => StaggeredGridView.countBuilder(
         padding: const EdgeInsets.all(8),
         itemCount: blogs.length,
         staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
@@ -88,7 +87,7 @@ class _AllPagesState extends State<AllPages> {
                 builder: (context) => DetailPage(noteId: note.id!),
               ));
 
-              refreshNotesreadAllNotes();
+              refreshingAllBogs();
             },
             child: BlogCard(blog: note, index: index),
           );

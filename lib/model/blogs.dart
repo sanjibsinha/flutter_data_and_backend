@@ -46,7 +46,7 @@ CREATE TABLE $tableBlogs (
     return blog.copy(id: id);
   }
 
-  Future<Blog> readNote(int id) async {
+  Future<Blog> readBlog(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(

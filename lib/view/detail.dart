@@ -24,13 +24,13 @@ class _DetailPageState extends State<DetailPage> {
   void initState() {
     super.initState();
 
-    refreshNote();
+    refreshBlog();
   }
 
-  Future refreshNote() async {
+  Future refreshBlog() async {
     setState(() => isLoading = true);
 
-    blog = await BlogDatabase.instance.readNote(widget.noteId);
+    blog = await BlogDatabase.instance.readBlog(widget.noteId);
 
     setState(() => isLoading = false);
   }
@@ -80,7 +80,7 @@ class _DetailPageState extends State<DetailPage> {
           builder: (context) => EditPage(blog: blog),
         ));
 
-        refreshNote();
+        refreshBlog();
       });
 
   Widget deleteButton() => IconButton(

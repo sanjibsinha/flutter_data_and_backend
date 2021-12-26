@@ -56,29 +56,29 @@ class _EditPageState extends State<EditPage> {
           onPrimary: Colors.white,
           primary: isFormValid ? null : Colors.grey.shade700,
         ),
-        onPressed: addOrUpdateNote,
+        onPressed: addOrUpdateBlog,
         child: const Text('Save'),
       ),
     );
   }
 
-  void addOrUpdateNote() async {
+  void addOrUpdateBlog() async {
     final isValid = _formKey.currentState!.validate();
 
     if (isValid) {
       final isUpdating = widget.blog != null;
 
       if (isUpdating) {
-        await updateNote();
+        await updateBlog();
       } else {
-        await addNote();
+        await addBlog();
       }
 
       Navigator.of(context).pop();
     }
   }
 
-  Future updateNote() async {
+  Future updateBlog() async {
     final blog = widget.blog!.copy(
       title: title,
       description: description,
@@ -87,7 +87,7 @@ class _EditPageState extends State<EditPage> {
     await BlogDatabase.instance.update(blog);
   }
 
-  Future addNote() async {
+  Future addBlog() async {
     final blog = Blog(
       title: title,
       description: description,
