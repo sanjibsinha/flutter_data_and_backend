@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import '../model/blogs.dart';
-import '../model/blog.dart';
+import '/model/blogs.dart';
+import '/model/blog.dart';
 import 'edit.dart';
 import 'detail.dart';
-import '../controller/blog_card.dart';
+import '/controller/blog_card.dart';
 
 class AllPages extends StatefulWidget {
   const AllPages({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _AllPagesState extends State<AllPages> {
   void initState() {
     super.initState();
 
-    refreshNotes();
+    refreshNotesreadAllNotes();
   }
 
   @override
@@ -31,10 +32,10 @@ class _AllPagesState extends State<AllPages> {
     super.dispose();
   }
 
-  Future refreshNotes() async {
+  Future refreshNotesreadAllNotes() async {
     setState(() => isLoading = true);
 
-    blogs = await BlogDatabase.instance.readAllNotes();
+    blogs = await BlogDatabase.instance.readAllBlogs();
 
     setState(() => isLoading = false);
   }
@@ -56,7 +57,7 @@ class _AllPagesState extends State<AllPages> {
                       'No Blogs',
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     )
-                  : buildNotes(),
+                  : buildNotesreadAllNotes(),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.pink.shade900,
@@ -66,12 +67,12 @@ class _AllPagesState extends State<AllPages> {
               MaterialPageRoute(builder: (context) => const EditPage()),
             );
 
-            refreshNotes();
+            refreshNotesreadAllNotes();
           },
         ),
       );
 
-  Widget buildNotes() => StaggeredGridView.countBuilder(
+  Widget buildNotesreadAllNotes() => StaggeredGridView.countBuilder(
         padding: const EdgeInsets.all(8),
         itemCount: blogs.length,
         staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
@@ -87,7 +88,7 @@ class _AllPagesState extends State<AllPages> {
                 builder: (context) => DetailPage(noteId: note.id!),
               ));
 
-              refreshNotes();
+              refreshNotesreadAllNotes();
             },
             child: BlogCard(blog: note, index: index),
           );

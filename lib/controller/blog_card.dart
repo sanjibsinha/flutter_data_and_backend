@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../model/blog.dart';
 
-final _lightColors = [
-  Colors.amber.shade300,
-  Colors.lightGreen.shade300,
-  Colors.lightBlue.shade300,
-  Colors.orange.shade300,
-  Colors.pinkAccent.shade100,
-  Colors.tealAccent.shade100
+final shadeOfColors = [
+  Colors.yellow.shade100,
+  Colors.purple.shade100,
+  Colors.teal.shade200,
+  Colors.orange.shade200,
+  Colors.white10,
 ];
 
 class BlogCard extends StatelessWidget {
@@ -24,7 +23,7 @@ class BlogCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// Pick colors from the accent colors based on index
-    final color = _lightColors[index % _lightColors.length];
+    final color = shadeOfColors[index % shadeOfColors.length];
     final time = DateFormat.yMMMd().format(blog.createdTime);
     final minHeight = getMinHeight(index);
 

@@ -63,7 +63,7 @@ CREATE TABLE $tableBlogs (
     }
   }
 
-  Future<List<Blog>> readAllNotes() async {
+  Future<List<Blog>> readAllBlogs() async {
     final db = await instance.database;
 
     const orderBy = '${BlogFields.time} ASC';
