@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import '../model/blog.dart';
 
 final shadeOfColors = [
-  Colors.yellow.shade100,
+  Colors.pink.shade100,
   Colors.purple.shade100,
   Colors.teal.shade200,
   Colors.orange.shade200,
@@ -46,6 +46,17 @@ class BlogCard extends StatelessWidget {
                 color: Colors.black,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              blog.description,
+              style: const TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 16,
+                fontWeight: FontWeight.w300,
               ),
             ),
           ],

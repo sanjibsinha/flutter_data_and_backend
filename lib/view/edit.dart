@@ -54,10 +54,12 @@ class _EditPageState extends State<EditPage> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           onPrimary: Colors.white,
+          onSurface: Colors.pink.shade900,
+          shadowColor: Colors.grey.shade600,
           primary: isFormValid ? null : Colors.pink.shade900,
         ),
         onPressed: addOrUpdateBlog,
-        child: const Text('Save'),
+        child: const Text('Add or Update'),
       ),
     );
   }
