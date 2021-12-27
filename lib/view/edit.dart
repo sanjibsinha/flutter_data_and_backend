@@ -56,10 +56,15 @@ class _EditPageState extends State<EditPage> {
           onPrimary: Colors.white,
           onSurface: Colors.pink.shade900,
           shadowColor: Colors.grey.shade600,
-          primary: isFormValid ? null : Colors.pink.shade900,
+          primary: isFormValid ? Colors.pink.shade900 : Colors.pink.shade900,
         ),
         onPressed: addOrUpdateBlog,
-        child: const Text('Add or Update'),
+        child: const Text(
+          'Add or Update',
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
       ),
     );
   }

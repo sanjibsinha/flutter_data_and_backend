@@ -61,7 +61,12 @@ class _AllPagesState extends State<AllPages> {
 
                   refreshingAllBogs();
                 },
-                child: const Text('Add Blog'),
+                child: const Text(
+                  'Add or Update Blog',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
               ),
             )
           ],
@@ -75,6 +80,24 @@ class _AllPagesState extends State<AllPages> {
                       style: TextStyle(color: Colors.white, fontSize: 60),
                     )
                   : buildingAllBlogs(),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          tooltip: 'Add or Update Blog',
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.pink.shade900,
+          onPressed: () async {
+            await Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const EditPage()),
+            );
+
+            refreshingAllBogs();
+          },
+          label: const Text(
+            'Add or Update Blog',
+            style: TextStyle(
+              fontSize: 30,
+            ),
+          ),
         ),
       );
 

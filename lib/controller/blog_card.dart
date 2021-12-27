@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../model/blog.dart';
 
-/// these shade of colors will appear on
+/// these shades of colors will appear on
 /// the display screen and it will appear
 /// based on the index of the list
 final shadeOfColors = [
