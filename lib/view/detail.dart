@@ -54,9 +54,11 @@ class _DetailPageState extends State<DetailPage> {
                       onPressed: () async {
                         if (isLoading) return;
 
-                        await Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditPage(blog: blog),
-                        ));
+                        await Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => EditPage(blog: blog),
+                          ),
+                        );
 
                         refreshBlog();
                       },
@@ -65,6 +67,8 @@ class _DetailPageState extends State<DetailPage> {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          backgroundColor: Colors.pink,
+                          color: Colors.white,
                         ),
                       ),
                     ),
