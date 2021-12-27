@@ -63,7 +63,7 @@ class _DetailPageState extends State<DetailPage> {
                         refreshBlog();
                       },
                       child: const Text(
-                        'Edit',
+                        'Add or Edit',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
