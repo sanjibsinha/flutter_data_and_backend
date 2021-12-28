@@ -98,16 +98,19 @@ class _DetailPageState extends State<DetailPage> {
       );
 
   Widget editButton() => IconButton(
-      icon: const Icon(Icons.edit_outlined),
-      onPressed: () async {
-        if (isLoading) return;
+        icon: const Icon(Icons.edit_outlined),
+        onPressed: () async {
+          if (isLoading) return;
 
-        await Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => EditPage(blog: blog),
-        ));
+          await Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => EditPage(blog: blog),
+            ),
+          );
 
-        refreshBlog();
-      });
+          refreshBlog();
+        },
+      );
 
   Widget deleteButton() => IconButton(
         icon: const Icon(Icons.delete),
