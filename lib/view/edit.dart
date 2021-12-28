@@ -60,7 +60,7 @@ class _EditPageState extends State<EditPage> {
         ),
         onPressed: addOrUpdateBlog,
         child: const Text(
-          'Add or Update Blog',
+          'Add or Update',
           style: TextStyle(
             fontSize: 20,
           ),

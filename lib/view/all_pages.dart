@@ -43,46 +43,22 @@ class _AllPagesState extends State<AllPages> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Blogs',
+            'My Diary',
             style: TextStyle(fontSize: 24),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  onPrimary: Colors.white,
-                  primary: Colors.pink.shade900,
-                ),
-                onPressed: () async {
-                  await Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const EditPage()),
-                  );
-
-                  refreshingAllBogs();
-                },
-                child: const Text(
-                  'Add Blog',
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            )
-          ],
         ),
         body: Center(
           child: isLoading
               ? const CircularProgressIndicator()
               : blogs.isEmpty
                   ? const Text(
-                      'No Blogs in the beginning...',
+                      'No Entry in the beginning...',
                       style: TextStyle(color: Colors.white, fontSize: 60),
                     )
                   : buildingAllBlogs(),
         ),
         floatingActionButton: FloatingActionButton.extended(
-          tooltip: 'Add Blog',
+          tooltip: 'Write Diary...',
           foregroundColor: Colors.white,
           backgroundColor: Colors.pink.shade900,
           onPressed: () async {
@@ -93,7 +69,7 @@ class _AllPagesState extends State<AllPages> {
             refreshingAllBogs();
           },
           label: const Text(
-            'Add Blog',
+            'Write Diary...',
             style: TextStyle(
               fontSize: 30,
             ),
