@@ -97,8 +97,13 @@ class _DetailPageState extends State<DetailPage> {
               ),
       );
 
-  Widget editButton() => IconButton(
-        icon: const Icon(Icons.edit_outlined),
+  Widget editButton() => ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          onPrimary: Colors.white,
+          onSurface: Colors.pink.shade900,
+          shadowColor: Colors.grey.shade600,
+          primary: Colors.pink.shade900,
+        ),
         onPressed: () async {
           if (isLoading) return;
 
@@ -110,14 +115,31 @@ class _DetailPageState extends State<DetailPage> {
 
           refreshBlog();
         },
+        child: const Text(
+          'Update',
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
       );
 
-  Widget deleteButton() => IconButton(
-        icon: const Icon(Icons.delete),
+  Widget deleteButton() => ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          onPrimary: Colors.white,
+          onSurface: Colors.pink.shade900,
+          shadowColor: Colors.grey.shade600,
+          primary: Colors.pink.shade900,
+        ),
         onPressed: () async {
           await BlogDatabaseHandler.instance.delete(widget.blogId);
 
           Navigator.of(context).pop();
         },
+        child: const Text(
+          'Delete',
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
       );
 }

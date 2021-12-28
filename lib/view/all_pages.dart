@@ -62,7 +62,7 @@ class _AllPagesState extends State<AllPages> {
                   refreshingAllBogs();
                 },
                 child: const Text(
-                  'Add or Update Blog',
+                  'Add Blog',
                   style: TextStyle(
                     fontSize: 20,
                   ),
@@ -82,7 +82,7 @@ class _AllPagesState extends State<AllPages> {
                   : buildingAllBlogs(),
         ),
         floatingActionButton: FloatingActionButton.extended(
-          tooltip: 'Add or Update Blog',
+          tooltip: 'Add Blog',
           foregroundColor: Colors.white,
           backgroundColor: Colors.pink.shade900,
           onPressed: () async {
@@ -93,7 +93,7 @@ class _AllPagesState extends State<AllPages> {
             refreshingAllBogs();
           },
           label: const Text(
-            'Add or Update Blog',
+            'Add Blog',
             style: TextStyle(
               fontSize: 30,
             ),
