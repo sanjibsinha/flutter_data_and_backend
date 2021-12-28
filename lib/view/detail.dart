@@ -39,7 +39,9 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           actions: [
+            const Text(' ... '),
             editButton(),
+            const Text(' ... '),
             deleteButton(),
           ],
         ),
@@ -50,28 +52,6 @@ class _DetailPageState extends State<DetailPage> {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   children: [
-                    TextButton(
-                      onPressed: () async {
-                        if (isLoading) return;
-
-                        await Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => EditPage(blog: blog),
-                          ),
-                        );
-
-                        refreshBlog();
-                      },
-                      child: const Text(
-                        'Add or Edit',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          backgroundColor: Colors.pink,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
                     const SizedBox(height: 10),
                     Text(
                       blog.title,
@@ -116,7 +96,7 @@ class _DetailPageState extends State<DetailPage> {
           refreshBlog();
         },
         child: const Text(
-          'Update',
+          'Edit',
           style: TextStyle(
             fontSize: 20,
           ),
